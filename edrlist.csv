@@ -1,0 +1,4 @@
+"host", "IP address", "Domain"
+"workstation1", 10.3.5.26, "workgroup"
+"workstation2", 10.3.5.27, "workgroup"
+"workstation3", 10.3.5.28, "workgroup"
