@@ -35,21 +35,6 @@ The script uses three inventory sources:
 
 <img width="802" height="498" alt="image" src="https://github.com/user-attachments/assets/650e734b-c2e9-459e-a063-31bdf1518b3f" />
 
-```mermaid
-flowchart LR
-    %% Inputs grouped with plus signs
-    A[CMDB Inventory<br>cmdblist.csv] -->|Plus| D
-    B[EDR Inventory<br>edrlist.csv] -->|Plus| D
-    C[Approved Exceptions<br>excptlist.csv] -->|Plus| D
-
-    %% Processing
-    D([Python Inventory Reconciliation<br>Hostname and IP matching · Exception evaluation · Coverage calculations])
-
-    %% Outputs grouped with AND
-    D -->|AND| E[Coverage Metrics<br>EDR deployment and exception percentages]
-    D -->|AND| F[Missing EDR Report<br>missedrlist.csv]
-```
-
 
 ### **Audit Workflow**
 1. **Import CMDB Inventory:** Read the CMDB CSV and build a dictionary of endpoint hostnames and IP addresses.
