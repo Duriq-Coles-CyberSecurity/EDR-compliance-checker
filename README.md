@@ -36,7 +36,7 @@ The script uses three inventory sources:
 <img width="802" height="498" alt="image" src="https://github.com/user-attachments/assets/650e734b-c2e9-459e-a063-31bdf1518b3f" />
 
 ```mermaid
-flowchart TD
+flowchart LR
     %% Inputs grouped with plus signs
     A[CMDB Inventory<br>cmdblist.csv] -->|Plus| D
     B[EDR Inventory<br>edrlist.csv] -->|Plus| D
