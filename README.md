@@ -32,45 +32,22 @@ The script uses three inventory sources:
 | `edrlist.csv` | Mock EDR inventory containing endpoints with an EDR agent deployed. |
 | `excptlist.csv` | Known exception inventory containing endpoints excluded from EDR deployment requirements. |
 
+
+<img width="802" height="498" alt="image" src="https://github.com/user-attachments/assets/650e734b-c2e9-459e-a063-31bdf1518b3f" />
+
 ```mermaid
 flowchart TD
-    %% Main wrapper container
-    subgraph Workflow_Container ["EDR compliance audit workflow"]
-        direction TB
+    %% Inputs grouped with plus signs
+    A[CMDB Inventory<br>cmdblist.csv] -->|Plus| D
+    B[EDR Inventory<br>edrlist.csv] -->|Plus| D
+    C[Approved Exceptions<br>excptlist.csv] -->|Plus| D
 
-        %% Input Files Section
-        subgraph Inputs ["Data Inputs"]
-            direction LR
-            I1["<b>CMDB Inventory</b><br><small>cmdblist.csv</small>"]
-            I2["<b>EDR Inventory</b><br><small>edrlist.csv</small>"]
-            I3["<b>Approved Exceptions</b><br><small>excptlist.csv</small>"]
-        end
+    %% Processing
+    D([Python Inventory Reconciliation<br>Hostname and IP matching · Exception evaluation · Coverage calculations])
 
-        %% Reconciliation Processing Node
-        Inputs --> P1
-
-        P1(["<b>Python Inventory Reconciliation</b><br><small>Hostname and IP matching &middot; Exception evaluation &middot; Coverage calculations</small>"])
-
-        %% Outputs Section
-        P1 --> O1
-        P1 --> O2
-
-        O1["<b>Coverage Metrics</b><br><small>EDR deployment and exception percentages</small>"]
-        O2["<b>Missing EDR Report</b><br><small>missedrlist.csv</small>"]
-    end
-
-    %% Theme / Visual Color Styling (Matching Dark Theme UI)
-    style Workflow_Container fill:#0b0f19,stroke:#334155,stroke-width:1px,color:#fff
-    style Inputs fill:#0f172a,stroke:#1e293b,stroke-width:1px,color:#fff
-    
-    style I1 fill:#1e293b,stroke:#334155,color:#fff
-    style I2 fill:#1e293b,stroke:#334155,color:#fff
-    style I3 fill:#1e293b,stroke:#334155,color:#fff
-    
-    style P1 fill:#064e3b,stroke:#10b981,stroke-width:1.5px,color:#fff
-    
-    style O1 fill:#022c22,stroke:#065f46,color:#fff
-    style O2 fill:#2d1510,stroke:#7c2d12,color:#fff
+    %% Outputs grouped with AND
+    D -->|AND| E[Coverage Metrics<br>EDR deployment and exception percentages]
+    D -->|AND| F[Missing EDR Report<br>missedrlist.csv]
 ```
 
 
